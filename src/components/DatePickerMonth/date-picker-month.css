@@ -1,0 +1,49 @@
+
+.date-picker-month {
+    width: 300px;
+    padding: 10px;
+}
+
+.date-picker-month-toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0px;
+}
+
+.date-picker-week-header {
+    display: flex;
+    padding: 5px;
+}
+
+.date-picker-week-days {
+    display: flex;
+    padding: 5px;
+}
+
+.hover {
+    background: #d7eff8;
+}
+
+.selected-date {
+    background: #169de0;
+    border-radius: 4px;
+}
+
+.date-picker-week-days .date {
+    cursor: pointer;
+}
+
+.date {
+    padding: 10px;
+    height: 15px;
+    width: 30px;
+    text-align: center;
+}
+
+.highlight {
+    border: 2px solid #000;
+}
+
+.opacity {
+    opacity: 0.5;
+}

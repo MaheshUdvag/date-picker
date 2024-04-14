@@ -1,0 +1,25 @@
+.date-picker-input {
+    padding: 10px;
+    width: 250px;
+    position: relative;
+}
+
+.date-picker-input input {
+    width: inherit;
+    padding: 10px;
+}
+
+.date-picker-input input:hover {
+    cursor: default;
+}
+
+.date-picker-icon {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.fa-close.date-picker-icon:hover {
+    color: #ff0000
+}

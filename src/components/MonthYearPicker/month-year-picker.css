@@ -1,0 +1,49 @@
+.month-year-picker {
+    width: 280px;
+    text-align: center;
+    background: #f7f7f7;
+}
+
+.month-year-list {
+    overflow: scroll;
+    height: 300px;
+}
+
+.current-month-year {
+    padding: 15px;
+    border-bottom: 1px solid #898787;
+    cursor: pointer;
+}
+
+.year-month-separator {
+    display: flex;
+    align-items: center;
+    border: 1px dotted #c2c2c2;
+    height: 105px;
+}
+
+.month-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.current-year {
+    color: #34c3ff;
+}
+
+.selected-month {
+    background: #169de0;
+    border-radius: 4px;
+}
+
+.month {
+    padding: 10px;
+    text-align: center;
+    width: 10px;
+    cursor: pointer;
+}
+
+.year {
+    padding: 10px;
+}
