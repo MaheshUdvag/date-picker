@@ -1,5 +1,4 @@
 .date-picker-input {
-    padding: 10px;
     width: 250px;
     position: relative;
 }
@@ -15,8 +14,8 @@
 
 .date-picker-icon {
     position: absolute;
-    top: 20px;
-    right: 0px;
+    top: 12px;
+    right: -12px;
     cursor: pointer;
 }
 

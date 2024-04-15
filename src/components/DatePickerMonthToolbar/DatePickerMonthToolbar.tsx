@@ -1,5 +1,6 @@
 import React from "react";
 import { TRAVERSE_NEXT_MONTH, TRAVERSE_PREV_MONTH } from "../../constants/DateConstants";
+import './date-picker-month-toolbar.css';
 
 interface IDatePickerMonthToolbarProps {
     currentMonth: string | undefined;
@@ -12,9 +13,9 @@ const DatePickerMonthToolbar: React.FC<IDatePickerMonthToolbarProps> = ({ curren
 
     return (
         <div className='date-picker-month-toolbar'>
-            <button onClick={traversePrevMonth}>{TRAVERSE_PREV_MONTH}</button>
-            <span onClick={() => setMonthYearPicker(true)}>{currentMonth}</span>
-            <button onClick={traverseNextMonth}>{TRAVERSE_NEXT_MONTH}</button>
+            <button onClick={traversePrevMonth} className="month-button">{TRAVERSE_PREV_MONTH}</button>
+            <button onClick={() => setMonthYearPicker(true)} className="month-button">{currentMonth}</button>
+            <button onClick={traverseNextMonth} className="month-button">{TRAVERSE_NEXT_MONTH}</button>
         </div>
     )
 }

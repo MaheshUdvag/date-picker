@@ -3,6 +3,7 @@ import { IDate } from '../../Interface/IDate';
 import { DatePickerContext } from '../../context/DatePicker.context';
 import { compareDates, isDateBetweenDates, isDateWeekDay, sortDates } from '../../utils/date.util';
 import { CALENDAR_TYPE } from '../../constants/DateConstants';
+import './date-picker-days.css';
 
 interface IDatePickerDays {
     dates: IDate[][] | undefined;

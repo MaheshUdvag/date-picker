@@ -1,0 +1,17 @@
+.date-picker-month-toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0px;
+}
+
+.month-button {
+    border: none;
+    background: inherit;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.month-button:hover {
+    background: #e2e2e2;
+    cursor: pointer;
+}
