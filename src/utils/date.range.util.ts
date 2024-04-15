@@ -1,6 +1,6 @@
 import { DATE_RANGE, DAY_MAPPING } from "../constants/DateConstants";
 
-type START_END_DATE = { startDate: Date | null, endDate: Date | null };
+export type START_END_DATE = { startDate: Date | null, endDate: Date | null };
 
 const calculateStartDate = (days: number,endDate: Date) => {
 
@@ -212,6 +212,17 @@ const dateRangeMap: { [key: string]: (date: Date) => START_END_DATE }  = {
     [DATE_RANGE.ALL_TIME]: getAllTimeWeekDays,
 }
 
+/**
+ * This method calculates the date range 
+ * based on the range type provided.
+ * If the range type is invalid or the
+ * requested range is invalid return null
+ * dates.
+ * 
+ * @param date 
+ * @param range 
+ * @returns 
+ */
 export const returnDateRange = (date: Date,range: string): START_END_DATE => {
     
     if(dateRangeMap[range]) {
@@ -222,4 +233,22 @@ export const returnDateRange = (date: Date,range: string): START_END_DATE => {
         startDate: null,
         endDate: null
     }
+}
+
+const startEndObject = {
+    startDate: null,
+    endDate: null
+}
+
+export const initializeRangeMap = {
+    [DATE_RANGE.TODAY]: startEndObject,
+    [DATE_RANGE.YESTERDAY]: startEndObject,
+    [DATE_RANGE.THIS_WEEK]: startEndObject,
+    [DATE_RANGE.LAST_7_DAYS]: startEndObject,
+    [DATE_RANGE.LAST_30_DAYS]: startEndObject,
+    [DATE_RANGE.THIS_MONTH]: startEndObject,
+    [DATE_RANGE.LAST_MONTH]: startEndObject,
+    [DATE_RANGE.THIS_YEAR]: startEndObject,
+    [DATE_RANGE.LAST_YEAR]: startEndObject,
+    [DATE_RANGE.ALL_TIME]: startEndObject,
 }

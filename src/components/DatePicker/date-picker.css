@@ -28,5 +28,5 @@
 
 .date-picker-button:disabled {
     cursor: not-allowed;
-    background: #54a6f8;
+    background: #d3d3d3;
 }

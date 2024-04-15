@@ -10,5 +10,13 @@
 .range {
     color: #34c3ff;
     cursor: pointer;
-    padding: 3px;
+    padding: 5px;
+    border: none;
+    background: inherit;
+    font-size: 15px;
+}
+
+.range:disabled {
+    color: #d3d3d3;
+    cursor: not-allowed;
 }
