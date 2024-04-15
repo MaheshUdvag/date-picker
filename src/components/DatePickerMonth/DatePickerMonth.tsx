@@ -124,7 +124,7 @@ const DatePickerMonth: React.FC<IDatePicker> = ({ calenderType }) => {
     return (
         <div className='date-picker-month'>
             {monthYearPicker ? 
-            <MonthYearPicker currentDate={currentDate} currentMonth={currentMonth} setCurrentDate={setCurrentDate}  setMonthYearPicker={setMonthYearPicker} calenderType={calenderType} /> : 
+            <MonthYearPicker currentDate={currentDate} currentMonth={currentMonth} setMonthYearPicker={setMonthYearPicker} calenderType={calenderType} /> : 
             (<>
                 <DatePickerMonthToolbar currentMonth={currentMonth} traverseNextMonth={traverseNextMonth} traversePrevMonth={traversePrevMonth} setMonthYearPicker={setMonthYearPicker} />
                 <DatePickerWeekHeader />

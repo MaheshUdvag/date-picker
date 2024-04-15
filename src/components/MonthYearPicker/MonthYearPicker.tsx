@@ -5,15 +5,14 @@ import { DatePickerContext } from '../../context/DatePicker.context';
 
 interface IMonthYearPicker {
     currentDate: Date | null;
-    setCurrentDate: (date: Date) => void;
     setMonthYearPicker: (monthPicker: boolean) => void;
     currentMonth: string;
     calenderType: CALENDAR_TYPE
 }
 
-const MonthYearPicker: React.FC<IMonthYearPicker> = ({ currentDate, setCurrentDate, setMonthYearPicker, currentMonth, calenderType }) => {
+const MonthYearPicker: React.FC<IMonthYearPicker> = ({ currentDate, setMonthYearPicker, currentMonth, calenderType }) => {
 
-    const { setNextMonthDate, setPrevMonthDate, prevMonthDate, nextMonthDate } = useContext(DatePickerContext);
+    const { setNextMonthDate, setPrevMonthDate } = useContext(DatePickerContext);
 
     const ref = useRef<null | HTMLDivElement>(null);
 
@@ -26,36 +25,17 @@ const MonthYearPicker: React.FC<IMonthYearPicker> = ({ currentDate, setCurrentDa
     const setMonthYear = (year: number, month: number) => {
         const date = new Date(year,month,1);
 
-        const isPreviousMonthGreaterOrEqual = prevMonthDate && 
-            prevMonthDate?.getFullYear() >= date.getFullYear() &&
-                prevMonthDate?.getMonth() >= date.getMonth();
-        
-        const isNextMonthLesserOrEqual = nextMonthDate &&
-            nextMonthDate?.getFullYear() <= date.getFullYear() &&
-            nextMonthDate?.getMonth() <= date.getMonth();
-
-        /**
-         * If the previous month calender
-         * is greater than the updated next month
-         * calender then update the previous month calender.
-         */
-        if (calenderType === CALENDAR_TYPE.next && isPreviousMonthGreaterOrEqual) {
+        if (calenderType === CALENDAR_TYPE.next) {
             const prevMonth = new Date(year, month - 1, 1);
             setPrevMonthDate(prevMonth);
             setNextMonthDate(date);
         }
 
-        /**
-         * If the next month calender
-         * is lesser than the updated previous month
-         * calender then update the next month calender.
-         */
-        if (calenderType === CALENDAR_TYPE.prev && isNextMonthLesserOrEqual) {
-            const prevMonth = new Date(year, month + 1, 1);
+        if (calenderType === CALENDAR_TYPE.prev) {
+            const nextMonth = new Date(year, month + 1, 1);
+            setNextMonthDate(nextMonth);
             setPrevMonthDate(date);
-            setNextMonthDate(prevMonth);
         }
-        setCurrentDate(date);
         setMonthYearPicker(false);
     }
 

@@ -25,7 +25,6 @@
 .month-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
 }
 
 .current-year {
@@ -40,10 +39,19 @@
 .month {
     padding: 10px;
     text-align: center;
-    width: 10px;
+    width: 15px;
     cursor: pointer;
+}
+
+.month:hover {
+    background: #e2e2e2;
+}
+
+.month.selected-month:hover {
+    background: #169de0;
 }
 
 .year {
     padding: 10px;
+    cursor: default;
 }
