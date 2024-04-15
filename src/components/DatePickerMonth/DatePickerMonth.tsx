@@ -103,7 +103,7 @@ const DatePickerMonth: React.FC<IDatePicker> = ({ calenderType }) => {
          */
         if (calenderType === CALENDAR_TYPE.prev) {
             setCurrentDate(prevMonthDate);
-        } else {
+        } else { 
             setCurrentDate(nextMonthDate);
         }
     }, [calenderType, prevMonthDate, nextMonthDate]);
@@ -123,10 +123,13 @@ const DatePickerMonth: React.FC<IDatePicker> = ({ calenderType }) => {
 
     return (
         <div className='date-picker-month'>
-            {monthYearPicker ? <MonthYearPicker currentDate={currentDate} currentMonth={currentMonth} setCurrentDate={setCurrentDate}  setMonthYearPicker={setMonthYearPicker} calenderType={calenderType} /> : (<>
+            {monthYearPicker ? 
+            <MonthYearPicker currentDate={currentDate} currentMonth={currentMonth} setCurrentDate={setCurrentDate}  setMonthYearPicker={setMonthYearPicker} calenderType={calenderType} /> : 
+            (<>
                 <DatePickerMonthToolbar currentMonth={currentMonth} traverseNextMonth={traverseNextMonth} traversePrevMonth={traversePrevMonth} setMonthYearPicker={setMonthYearPicker} />
                 <DatePickerWeekHeader />
-                <DatePickerDays dates={dates} calenderType={calenderType} currentDate={currentDate} traverseNextMonth={traverseNextMonth} traversePrevMonth={traversePrevMonth} /></>)}
+                <DatePickerDays dates={dates} calenderType={calenderType} currentDate={currentDate} traverseNextMonth={traverseNextMonth} traversePrevMonth={traversePrevMonth} />
+            </>)}
         </div>
     )
 }
