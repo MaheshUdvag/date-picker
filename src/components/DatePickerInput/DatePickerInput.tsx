@@ -3,10 +3,11 @@ import DatePicker from '../DatePicker/DatePicker';
 import './date-picker-input.css';
 
 interface IDatePickerInput {
-    getSelectedDates: (startEndDates: string[], weekendDates: string[]) => void
+    getSelectedDates: (startEndDates: string[], weekendDates: string[]) => void,
+    preDefinedRanges?: string[]
 }
 
-export const DatePickerInput: React.FC<IDatePickerInput> = ({ getSelectedDates }) => {
+export const DatePickerInput: React.FC<IDatePickerInput> = ({ getSelectedDates, preDefinedRanges }) => {
 
     const [value, setValue] = useState<string>("");
     const [showPicker, setShowPicker] = useState<boolean>(false);
@@ -25,7 +26,7 @@ export const DatePickerInput: React.FC<IDatePickerInput> = ({ getSelectedDates }
                 {!value && <i onClick={() => setShowPicker(!showPicker)} className="fa fa-calendar date-picker-icon"></i>}
                 {value && <i onClick={() => setValue("")} className="fa fa-close date-picker-icon"></i>}
             </div>
-            {showPicker && <DatePicker returnSelectedDates={returnSelectedDates} setShowPicker={setShowPicker} />}
+            {showPicker && <DatePicker preDefinedRanges={preDefinedRanges} returnSelectedDates={returnSelectedDates} setShowPicker={setShowPicker} />}
         </>
     )
 }

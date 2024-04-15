@@ -9,10 +9,11 @@ import { formatIDate, getWeekendsBetweenDates, sortDates } from '../../utils/dat
 
 interface IDatePicker {
   returnSelectedDates: (startEndDates: string[], weekendDates: string[]) => void,
-  setShowPicker: (pickerState: boolean) => void
+  setShowPicker: (pickerState: boolean) => void,
+  preDefinedRanges?: string[]
 }
 
-const DatePicker: React.FC<IDatePicker> = ({ returnSelectedDates, setShowPicker }) => {
+const DatePicker: React.FC<IDatePicker> = ({ returnSelectedDates, setShowPicker, preDefinedRanges }) => {
 
   const [date1, setDate1] = useState<IDate | null>(null);
   const [date2, setDate2] = useState<IDate | null>(null);
@@ -52,7 +53,7 @@ const DatePicker: React.FC<IDatePicker> = ({ returnSelectedDates, setShowPicker 
           <DatePickerMonth calenderType={CALENDAR_TYPE.next} />
         </div>
         <div className='date-picker-selectors'>
-          <DateRangeSelector returnDates={() => setReturnDateRange(true)} />
+          <DateRangeSelector returnDates={() => setReturnDateRange(true)} preDefinedRanges={preDefinedRanges} />
           <button className='date-picker-button' disabled={!date1 || !date2} onClick={() => setReturnDateRange(true)}>OK</button>
         </div>
       </div>
