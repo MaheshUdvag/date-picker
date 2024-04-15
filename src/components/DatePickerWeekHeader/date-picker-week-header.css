@@ -1,4 +1,12 @@
 
+
+.day {
+    padding: 10px;
+    height: 15px;
+    width: 30px;
+    text-align: center;
+}
+
 .date-picker-week-header {
     display: flex;
     padding: 5px;

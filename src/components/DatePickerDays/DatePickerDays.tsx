@@ -114,9 +114,11 @@ const DatePickerDays: React.FC<IDatePickerDays> = ({ dates, calenderType, curren
      */
     const highlightDate = (date: IDate): string => {
         const today = new Date();
-        let className = 'date';
 
         const isWeekDay = isDateWeekDay(date);
+
+        let className = isWeekDay ? 'date' : 'weekend-date';
+        
         const isCurrentMonthDate = date.month === currentDate?.getMonth();
 
         if(date1 && date2) {

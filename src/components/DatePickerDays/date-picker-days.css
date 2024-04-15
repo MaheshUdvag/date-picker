@@ -24,6 +24,22 @@
     text-align: center;
 }
 
+.date:hover {
+    background: #e2e2e2;
+}
+
+.date.selected-date:hover {
+    background: #169de0;
+}
+
+.weekend-date {
+    padding: 10px;
+    height: 15px;
+    width: 30px;
+    text-align: center;
+    cursor: default;
+}
+
 .highlight {
     border: 2px solid #000;
 }
