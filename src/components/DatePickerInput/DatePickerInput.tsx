@@ -14,14 +14,14 @@ export const DatePickerInput: React.FC<IDatePickerInput> = ({ getSelectedDates }
     const returnSelectedDates = (startEndDates: string[], weekendDates: string[]) => {
         setValue(startEndDates[0] + ' ~ ' + startEndDates[1]);
         setShowPicker(false);
-        getSelectedDates(startEndDates,weekendDates);
+        getSelectedDates(startEndDates, weekendDates);
     }
-    
+
 
     return (
         <>
             <div className="date-picker-input" >
-                <input type="text" value={value} onChange={() => setValue("")} readOnly/>
+                <input type="text" value={value} onChange={() => setValue("")} readOnly />
                 {!value && <i onClick={() => setShowPicker(!showPicker)} className="fa fa-calendar date-picker-icon"></i>}
                 {value && <i onClick={() => setValue("")} className="fa fa-close date-picker-icon"></i>}
             </div>

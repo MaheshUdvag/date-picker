@@ -1,6 +1,14 @@
 import { IDate } from "../Interface/IDate";
 import { DAY_MAPPING } from "../constants/DateConstants";
 
+/**
+ * This method is used to compare 
+ * the given 2 dates.
+ * 
+ * @param date1 
+ * @param date2 
+ * @returns 
+ */
 export const compareDates = (date1: IDate, date2: IDate) => {
 
     const dateObj1 = new Date(date1.year,date1.month,date1.date);
@@ -17,6 +25,15 @@ export const compareDates = (date1: IDate, date2: IDate) => {
     }
 }
 
+/**
+ * This method accepts 2 dates 
+ * and returns them in sorted order
+ * in an array.
+ * 
+ * @param date1 
+ * @param date2 
+ * @returns 
+ */
 export const sortDates = (date1: IDate,date2: IDate) => {
     const dateFlag = compareDates(date1,date2);
     if(dateFlag !== 1) {
@@ -25,6 +42,16 @@ export const sortDates = (date1: IDate,date2: IDate) => {
     return [date2,date1];
 }
 
+/**
+ * This method checks if the given date
+ * is between the start and end dates 
+ * and returns true or false.
+ * 
+ * @param date 
+ * @param startDate 
+ * @param endDate 
+ * @returns 
+ */
 export const isDateBetweenDates = (date: IDate,startDate: IDate,endDate: IDate) => {
     const isGreaterThanStart = compareDates(date,startDate);
     let isBetweenDateRange = false;
@@ -38,6 +65,14 @@ export const isDateBetweenDates = (date: IDate,startDate: IDate,endDate: IDate) 
     return isBetweenDateRange;
 }
 
+/**
+ * This method is used to check
+ * if the given date is a weekday 
+ * or not.
+ * 
+ * @param date 
+ * @returns 
+ */
 export const isDateWeekDay = (date: IDate) => {
    
     const dateObject = new Date(date.year,date.month,date.date);
@@ -46,6 +81,14 @@ export const isDateWeekDay = (date: IDate) => {
     return day !== DAY_MAPPING.Saturday && day !== DAY_MAPPING.Sunday;
 }
 
+/**
+ * This method returns the weekends between the
+ * selected date range.
+ * 
+ * @param startDate 
+ * @param endDate 
+ * @returns 
+ */
 export const getWeekendsBetweenDates = (startDate: IDate, endDate: IDate): string[] => {
 
     const weekEnds: string[] = [];
@@ -64,6 +107,12 @@ export const getWeekendsBetweenDates = (startDate: IDate, endDate: IDate): strin
 
 }
 
+/**
+ * Returns the given Date object
+ * in the format 'yyyy-mm-dd'
+ * @param day 
+ * @returns 
+ */
 export const formatDate = (day: Date) => {
     const year = day.getFullYear();
     const month = day.getMonth();
@@ -71,6 +120,12 @@ export const formatDate = (day: Date) => {
     return formatIDate({ year, month, date});
 }
 
+/**
+ * Returns the given IDate object
+ * in the format 'yyyy-mm-dd'
+ * @param iDate 
+ * @returns 
+ */
 export const formatIDate = (iDate: IDate) => {
     const year = iDate.year;
     const month = iDate.month + 1;

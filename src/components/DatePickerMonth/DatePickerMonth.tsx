@@ -47,7 +47,7 @@ const DatePickerMonth: React.FC<IDatePicker> = ({ calenderType }) => {
                  * are in the same month and year.
                  */
                 const isSameMonthAndYear = updatedPrevMonth.getMonth() === prevMonthDate?.getMonth() &&
-                 updatedPrevMonth.getFullYear() === prevMonthDate.getFullYear();
+                    updatedPrevMonth.getFullYear() === prevMonthDate.getFullYear();
                 if (isSameMonthAndYear) {
                     updatedPrevMonth.setMonth(updatedPrevMonth.getMonth() - 1);
                     setPrevMonthDate(updatedPrevMonth);
@@ -85,8 +85,8 @@ const DatePickerMonth: React.FC<IDatePicker> = ({ calenderType }) => {
                  * are in the same month and year.
                  */
                 const isSameMonthAndYear = nextMonth.getMonth() === nextMonthDate?.getMonth() &&
-                 nextMonth.getFullYear() === nextMonthDate.getFullYear();
-                if(isSameMonthAndYear) {
+                    nextMonth.getFullYear() === nextMonthDate.getFullYear();
+                if (isSameMonthAndYear) {
                     nextMonth.setMonth(nextMonth.getMonth() + 1);
                     setNextMonthDate(nextMonth);
                 }
@@ -103,7 +103,7 @@ const DatePickerMonth: React.FC<IDatePicker> = ({ calenderType }) => {
          */
         if (calenderType === CALENDAR_TYPE.prev) {
             setCurrentDate(prevMonthDate);
-        } else { 
+        } else {
             setCurrentDate(nextMonthDate);
         }
     }, [calenderType, prevMonthDate, nextMonthDate]);
@@ -123,13 +123,13 @@ const DatePickerMonth: React.FC<IDatePicker> = ({ calenderType }) => {
 
     return (
         <div className='date-picker-month'>
-            {monthYearPicker ? 
-            <MonthYearPicker currentDate={currentDate} currentMonth={currentMonth} setMonthYearPicker={setMonthYearPicker} calenderType={calenderType} /> : 
-            (<>
-                <DatePickerMonthToolbar currentMonth={currentMonth} traverseNextMonth={traverseNextMonth} traversePrevMonth={traversePrevMonth} setMonthYearPicker={setMonthYearPicker} />
-                <DatePickerWeekHeader />
-                <DatePickerDays dates={dates} calenderType={calenderType} currentDate={currentDate} traverseNextMonth={traverseNextMonth} traversePrevMonth={traversePrevMonth} />
-            </>)}
+            {monthYearPicker ?
+                <MonthYearPicker currentDate={currentDate} currentMonth={currentMonth} setMonthYearPicker={setMonthYearPicker} calenderType={calenderType} /> :
+                (<>
+                    <DatePickerMonthToolbar currentMonth={currentMonth} traverseNextMonth={traverseNextMonth} traversePrevMonth={traversePrevMonth} setMonthYearPicker={setMonthYearPicker} />
+                    <DatePickerWeekHeader />
+                    <DatePickerDays dates={dates} calenderType={calenderType} currentDate={currentDate} traverseNextMonth={traverseNextMonth} traversePrevMonth={traversePrevMonth} />
+                </>)}
         </div>
     )
 }

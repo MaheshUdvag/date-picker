@@ -2,6 +2,15 @@ import { DATE_RANGE, DAY_MAPPING } from "../constants/DateConstants";
 
 export type START_END_DATE = { startDate: Date | null, endDate: Date | null };
 
+/**
+ * Returns the start date from the
+ * given end date and number of 
+ * days.
+ * 
+ * @param days 
+ * @param endDate 
+ * @returns 
+ */
 const calculateStartDate = (days: number,endDate: Date) => {
 
     const startDate = new Date(endDate);
@@ -18,6 +27,14 @@ const calculateStartDate = (days: number,endDate: Date) => {
     return startDate;
 }
 
+/**
+ * Returns the recent weekday.
+ * (eg - if current date is a Sunday 
+ * or Saturday return Friday's date)
+ * 
+ * @param date 
+ * @returns 
+ */
 const getRecentWeekday = (date: Date): Date => {
 
     const weekday = new Date(date);
@@ -33,6 +50,14 @@ const getRecentWeekday = (date: Date): Date => {
     return weekday;
 }
 
+/**
+ * Returns the upcoming weekday.
+ * (eg - if current date is a Sunday 
+ * or Saturday return Mondays's date)
+ * 
+ * @param date 
+ * @returns 
+ */
 const getUpcommingWeekday = (date: Date): Date => {
 
     const weekday = new Date(date);
@@ -50,6 +75,14 @@ const getUpcommingWeekday = (date: Date): Date => {
 
 export const isDateWeekend = (date: Date): boolean => date.getDay() === DAY_MAPPING.Saturday || date.getDay() === DAY_MAPPING.Sunday
 
+/**
+ * Validates if the current date is 
+ * selectable and returns the
+ * start and end date if valid.
+ * 
+ * @param date 
+ * @returns 
+ */
 const returnCurrentDate = (date: Date): START_END_DATE => {
     let today = new Date(date);
 
@@ -72,6 +105,14 @@ const returnCurrentDate = (date: Date): START_END_DATE => {
     }
 }
 
+/**
+ * Validates if the previous date is 
+ * selectable and returns the
+ * start and end date if valid.
+ * 
+ * @param date 
+ * @returns 
+ */
 const returnPreviousDate = (date: Date): START_END_DATE => {
     let yesterday = new Date(date);
     yesterday.setDate(yesterday.getDate() - 1);
@@ -93,6 +134,13 @@ const returnPreviousDate = (date: Date): START_END_DATE => {
     };
 }
 
+/**
+ * Returns the weekdays of the
+ * current week.
+ * 
+ * @param date 
+ * @returns 
+ */
 const getThisWeekDays = (date: Date): START_END_DATE => {
 
     const startDate = new Date(date.getFullYear(),date.getMonth(),date.getDate() - date.getDay() + 1);
@@ -100,6 +148,15 @@ const getThisWeekDays = (date: Date): START_END_DATE => {
     return {startDate, endDate};
 }
 
+/**
+ * Returns the starting 
+ * and ending weekday of
+ * last 7 weekdays from
+ * the current date.
+ * 
+ * @param date 
+ * @returns 
+ */
 const getLastSevenWeekDays = (date: Date): START_END_DATE => {
 
     const endDate = getRecentWeekday(date);
@@ -109,6 +166,15 @@ const getLastSevenWeekDays = (date: Date): START_END_DATE => {
 
 } 
 
+/**
+ * Returns the starting 
+ * and ending weekday of 
+ * last 30 weekdays from
+ * the current date.
+ * 
+ * @param date 
+ * @returns 
+ */
 const getLastThirtyWeekDays = (date: Date): START_END_DATE => {
 
     const endDate = getRecentWeekday(date);
@@ -118,6 +184,14 @@ const getLastThirtyWeekDays = (date: Date): START_END_DATE => {
 
 } 
 
+/**
+ * Returns the starting 
+ * and ending weekday of
+ * current month. 
+ * 
+ * @param date 
+ * @returns 
+ */
 const getCurrentMonthWeekDays = (date: Date): START_END_DATE => {
 
     const endDate = getRecentWeekday(date);
@@ -142,6 +216,14 @@ const getCurrentMonthWeekDays = (date: Date): START_END_DATE => {
     return { startDate, endDate };
 }
 
+/**
+ * Returns the starting 
+ * and ending weekday of 
+ * previous month. 
+ * 
+ * @param date 
+ * @returns 
+ */
 const getLastMonthDays = (date: Date): START_END_DATE => {
     const lastDayOfMonth = new Date(date.getFullYear(),date.getMonth(),0);
     const endDate = getRecentWeekday(lastDayOfMonth);
@@ -155,6 +237,14 @@ const getLastMonthDays = (date: Date): START_END_DATE => {
     }
 } 
 
+/**
+ * Returns the starting 
+ * and ending weekday of
+ * current year. 
+ * 
+ * @param date 
+ * @returns 
+ */
 const getThisYearWeekDays = (date: Date): START_END_DATE => {
 
     const endDate = getRecentWeekday(date);
@@ -179,6 +269,14 @@ const getThisYearWeekDays = (date: Date): START_END_DATE => {
     return { startDate, endDate }
 }
 
+/**
+ * Returns the starting 
+ * and ending weekday of  
+ * last year. 
+ * 
+ * @param date 
+ * @returns 
+ */
 const getLastYearWeekDays = (date: Date): START_END_DATE => {
 
     const lastDateOfYear = new Date(date.getFullYear() - 1, 11, 31);
@@ -189,6 +287,17 @@ const getLastYearWeekDays = (date: Date): START_END_DATE => {
     return { startDate, endDate }
 }
 
+/**
+ * Returns the starting 
+ * and ending weekday of
+ * all time. We select the 
+ * range starting from the
+ * first weekday of the 
+ * previous year.
+ * 
+ * @param date 
+ * @returns 
+ */
 const getAllTimeWeekDays = (date: Date): START_END_DATE => {
     const endDate = getRecentWeekday(date);
     const allTimeDateStart = new Date(endDate.getFullYear()-1,0,1);
@@ -199,6 +308,10 @@ const getAllTimeWeekDays = (date: Date): START_END_DATE => {
     }
 }
 
+/**
+ * Determines the method to be 
+ * called based on the DATE_RANGE.
+ */
 const dateRangeMap: { [key: string]: (date: Date) => START_END_DATE }  = {
     [DATE_RANGE.TODAY]: returnCurrentDate,
     [DATE_RANGE.YESTERDAY]: returnPreviousDate,

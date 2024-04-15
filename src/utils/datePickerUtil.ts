@@ -26,6 +26,13 @@ export const frameDateObject = (date: number, month: number, year: number): IDat
     };
 }
 
+/**
+ * This method returns the array of dates
+ * that has to be displayed for a given month.
+ * 
+ * @param currentDate 
+ * @returns 
+ */
 export const getDayArray = (currentDate: Date): IDate[][] => {
 
     const currentMonth: number = currentDate.getMonth();
@@ -33,6 +40,7 @@ export const getDayArray = (currentDate: Date): IDate[][] => {
 
     const prevMonthdate: Date = new Date(currentDate);
     prevMonthdate.setMonth(currentMonth - 1);
+
     const prevMonth: number = prevMonthdate.getMonth();
     const prevMonthYear: number = prevMonthdate.getFullYear();
 
@@ -104,6 +112,10 @@ export const getDayArray = (currentDate: Date): IDate[][] => {
         nextMonthDateItr++;
         currentDay++;
     }
+
+    /**
+     * Populate the 6 week of the current/next month.
+     */
     currentDay = 0;
     if(currentWeek % 5 !== 0 || nextMonthDateItr === 1) {
         if(nextMonthDateItr !== 1) {

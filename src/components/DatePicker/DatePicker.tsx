@@ -25,21 +25,21 @@ const DatePicker: React.FC<IDatePicker> = ({ returnSelectedDates, setShowPicker 
   const [endRangeDate, setEndRangeDate] = useState<IDate | null>(null);
 
   const returnDates = () => {
-    if(date1 && date2) {
+    if (date1 && date2) {
 
-      const [startDate,endDate] = sortDates(date1,date2);
+      const [startDate, endDate] = sortDates(date1, date2);
 
       const formattedStartDate = formatIDate(startDate);
       const formattedEndDate = formatIDate(endDate);
 
-      const weekendDates = getWeekendsBetweenDates(startDate,endDate);
-      returnSelectedDates([formattedStartDate,formattedEndDate],weekendDates);
+      const weekendDates = getWeekendsBetweenDates(startDate, endDate);
+      returnSelectedDates([formattedStartDate, formattedEndDate], weekendDates);
       setShowPicker(false);
     }
   }
 
   useEffect(() => {
-    if(date1 && date2 && returnDateRange) {
+    if (date1 && date2 && returnDateRange) {
       returnDates();
     }
   }, [date1, date2, returnDateRange]);

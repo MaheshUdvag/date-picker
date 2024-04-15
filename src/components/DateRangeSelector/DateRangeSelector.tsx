@@ -13,15 +13,15 @@ type RANGE_LIST = { [key: string]: START_END_DATE };
 const DateRangeSelector: React.FC<IDateRangeSelector> = ({ returnDates }) => {
 
     const { setDate1, setDate2 } = useContext(DatePickerContext);
-    const [rangeMap,setRangeMap] = useState<RANGE_LIST>(initializeRangeMap);
+    const [rangeMap, setRangeMap] = useState<RANGE_LIST>(initializeRangeMap);
 
     /**
      * Sets the predefined date range.
      * @param range 
      */
     const selectRange = (range: string) => {
-        const {startDate, endDate } = rangeMap[range];
-        if(startDate && endDate) {
+        const { startDate, endDate } = rangeMap[range];
+        if (startDate && endDate) {
             const date1 = {
                 year: startDate.getFullYear(),
                 month: startDate.getMonth(),
@@ -39,9 +39,9 @@ const DateRangeSelector: React.FC<IDateRangeSelector> = ({ returnDates }) => {
     }
 
     const isValidRange = (range: string) => {
-        if(rangeMap) {
-            const {startDate,endDate} = rangeMap[range];
-            if(startDate !== null && endDate !== null) {
+        if (rangeMap) {
+            const { startDate, endDate } = rangeMap[range];
+            if (startDate !== null && endDate !== null) {
                 return true;
             }
         }
@@ -49,12 +49,16 @@ const DateRangeSelector: React.FC<IDateRangeSelector> = ({ returnDates }) => {
     }
 
     useEffect(() => {
+        /**
+         * Populates the list of dates for 
+         * all the predefined date ranges
+         */
         const rangeList: RANGE_LIST = {};
         Object.values(DATE_RANGE).forEach((range: string) => {
-            rangeList[range] = returnDateRange(new Date(),range);
+            rangeList[range] = returnDateRange(new Date(), range);
         });
         setRangeMap(rangeList);
-    },[]);
+    }, []);
 
     return (
         <div className='range-selector'>

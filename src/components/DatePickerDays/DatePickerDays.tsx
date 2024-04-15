@@ -40,23 +40,23 @@ const DatePickerDays: React.FC<IDatePickerDays> = ({ dates, calenderType, curren
         const isWeekDay = isDateWeekDay(date);
         let resetDate = false;
         let datesSelected = false;
-        if(isWeekDay) {
-            if(date1 && date2) {
+        if (isWeekDay) {
+            if (date1 && date2) {
                 setDate1(date);
                 setDate2(null);
                 resetDate = true;
-            } else if(date1) {
+            } else if (date1) {
                 setDate2(date);
                 datesSelected = true;
             } else {
                 setDate1(date);
-                if(calenderType === CALENDAR_TYPE.next) {
-                    resetDate=true;
+                if (calenderType === CALENDAR_TYPE.next) {
+                    resetDate = true;
                 }
             }
             const currentMonth = currentDate?.getMonth();
 
-            if(resetDate && calenderType === CALENDAR_TYPE.next) {
+            if (resetDate && calenderType === CALENDAR_TYPE.next) {
                 /**
                  * Called when the user the selects 
                  * the start date in the next month 
@@ -64,13 +64,13 @@ const DatePickerDays: React.FC<IDatePickerDays> = ({ dates, calenderType, curren
                  */
                 setNextMonthAsPrevious(date);
             } else {
-                if(calenderType === CALENDAR_TYPE.prev && currentMonth) {
+                if (calenderType === CALENDAR_TYPE.prev && currentMonth) {
                     /**
                      * If the user selected date is greater than the 
                      * current month and the end date is not 
                      * selected then traverse to the next month.
                      */
-                    if(date.month > currentMonth && !datesSelected) {
+                    if (date.month > currentMonth && !datesSelected) {
                         traverseNextMonth();
                     }
                     /**
@@ -82,26 +82,26 @@ const DatePickerDays: React.FC<IDatePickerDays> = ({ dates, calenderType, curren
                         traversePrevMonth();
                     }
                 }
-                if(calenderType === CALENDAR_TYPE.next && currentMonth) {
+                if (calenderType === CALENDAR_TYPE.next && currentMonth) {
                     /**
                      * If the user selects the previous month date in 
                      * the current month calender then traverse to the 
                      * previous month.
                      */
-                    if(date.month < currentMonth) {
+                    if (date.month < currentMonth) {
                         traversePrevMonth();
-                    } 
+                    }
                     /**
                      * If the user selects the next month date in 
                      * the current month calender then traverse to the 
                      * next month.
                      */
-                    if(date.month > currentMonth) {
+                    if (date.month > currentMonth) {
                         traverseNextMonth();
                     }
                 }
             }
-            
+
         }
     }
 
@@ -118,32 +118,32 @@ const DatePickerDays: React.FC<IDatePickerDays> = ({ dates, calenderType, curren
         const isWeekDay = isDateWeekDay(date);
 
         let className = isWeekDay ? 'date' : 'weekend-date';
-        
+
         const isCurrentMonthDate = date.month === currentDate?.getMonth();
 
-        if(date1 && date2) {
-            const [startDate,endDate] = sortDates(date1,date2);
-            const isBetweenDates = isDateBetweenDates(date,startDate,endDate);
+        if (date1 && date2) {
+            const [startDate, endDate] = sortDates(date1, date2);
+            const isBetweenDates = isDateBetweenDates(date, startDate, endDate);
 
             /**
              * If the date is between the selected range
              * and is in the current month then display 
              * the hover style.
              */
-            if(isBetweenDates && isWeekDay && isCurrentMonthDate) {
+            if (isBetweenDates && isWeekDay && isCurrentMonthDate) {
                 className += ' hover';
             }
-        } else if(date1 && endRangeDate) {
+        } else if (date1 && endRangeDate) {
             const start = date1;
-            const [startDate,endDate] = sortDates(start,endRangeDate);
-            const isBetweenDates = isDateBetweenDates(date,startDate,endDate);
+            const [startDate, endDate] = sortDates(start, endRangeDate);
+            const isBetweenDates = isDateBetweenDates(date, startDate, endDate);
 
             /**
              * If the date is between the start and the
              * hovered date and is in the current month
              * then display the hover style.
              */
-            if(isBetweenDates && isWeekDay && isCurrentMonthDate) {
+            if (isBetweenDates && isWeekDay && isCurrentMonthDate) {
                 className += ' hover';
             }
         }
@@ -153,7 +153,7 @@ const DatePickerDays: React.FC<IDatePickerDays> = ({ dates, calenderType, curren
          * month then blur the previous and next
          * month dates. 
          */
-        if(!isCurrentMonthDate) {
+        if (!isCurrentMonthDate) {
             className += ' opacity';
         }
 
@@ -161,13 +161,13 @@ const DatePickerDays: React.FC<IDatePickerDays> = ({ dates, calenderType, curren
          * If the current date is today's date
          * then add the border around the date.
          */
-        const highlightCurrentDate =  today.getDate() === date.date &&
-         today.getMonth() === date.month &&
-         today.getFullYear() === date.year;
+        const highlightCurrentDate = today.getDate() === date.date &&
+            today.getMonth() === date.month &&
+            today.getFullYear() === date.year;
 
-         if(highlightCurrentDate) {
+        if (highlightCurrentDate) {
             className += ' highlight';
-         }
+        }
 
         /**
          * If the current date is equal date1 or date2
@@ -186,7 +186,7 @@ const DatePickerDays: React.FC<IDatePickerDays> = ({ dates, calenderType, curren
             if (isCurrentDate2 === 0 && isCurrentMonthDate) {
                 className += ' selected-date';
             }
-        } 
+        }
 
         return className;
     }
@@ -197,7 +197,7 @@ const DatePickerDays: React.FC<IDatePickerDays> = ({ dates, calenderType, curren
      * @param date
      */
     const mouseHover = (date: IDate) => {
-        if(date1 || date2) {
+        if (date1 || date2) {
             setEndRangeDate(date);
         }
     }
@@ -208,13 +208,14 @@ const DatePickerDays: React.FC<IDatePickerDays> = ({ dates, calenderType, curren
          * when any date is selected.
          */
         setEndRangeDate(null);
-    },[date1,date2]);
+    }, [date1, date2]);
 
     return (
         <>
             {dates?.map((week, index) => <div key={`week${index}`} className='date-picker-week-days'>
                 {week.map((date) => <span key={`day${date.date + date.month + date.year}`} className={highlightDate(date)} onClick={() => selectDate(date)} onMouseOver={() => mouseHover(date)}>{date.date}</span>)}
-            </div>)}</>
+            </div>)}
+        </>
     )
 }
 

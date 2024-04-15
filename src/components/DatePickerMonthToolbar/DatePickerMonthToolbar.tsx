@@ -9,7 +9,7 @@ interface IDatePickerMonthToolbarProps {
     setMonthYearPicker: (monthPicker: boolean) => void;
 }
 
-const DatePickerMonthToolbar: React.FC<IDatePickerMonthToolbarProps> = ({ currentMonth,traversePrevMonth,traverseNextMonth,setMonthYearPicker }) => {
+const DatePickerMonthToolbar: React.FC<IDatePickerMonthToolbarProps> = ({ currentMonth, traversePrevMonth, traverseNextMonth, setMonthYearPicker }) => {
 
     return (
         <div className='date-picker-month-toolbar'>
