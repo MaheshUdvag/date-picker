@@ -29,8 +29,8 @@ export const isDateBetweenDates = (date: IDate,startDate: IDate,endDate: IDate) 
     const isGreaterThanStart = compareDates(date,startDate);
     let isBetweenDateRange = false;
     if(isGreaterThanStart >= 0) {
-        const isLesserThanStart = compareDates(endDate,date);
-        if(isLesserThanStart >= 0) {
+        const isLesserThanEnd = compareDates(date,endDate);
+        if(isLesserThanEnd <= 0) {
             isBetweenDateRange =  true;
         }
     }

@@ -6,10 +6,12 @@ interface IDatePickerContext {
     date2: IDate | null;
     setDate1: (date: IDate | null) => void;
     setDate2: (date: IDate | null) => void;
-    setNextMonthDate: (date: Date) => void,
-    setPrevMonthDate: (date: Date) => void,
-    nextMonthDate: Date | null,
-    prevMonthDate: Date | null
+    setNextMonthDate: (date: Date) => void;
+    setPrevMonthDate: (date: Date) => void;
+    nextMonthDate: Date | null;
+    prevMonthDate: Date | null;
+    endRangeDate: IDate | null;
+    setEndRangeDate: (date: IDate | null) => void
 }
 
 
@@ -21,5 +23,7 @@ export const DatePickerContext = createContext<IDatePickerContext>({
     setNextMonthDate: () => null,
     setPrevMonthDate: () => null,
     nextMonthDate: null,
-    prevMonthDate: null
+    prevMonthDate: null,
+    endRangeDate: null,
+    setEndRangeDate: () => null
 });

@@ -1,5 +1,9 @@
 import { IDate } from "../Interface/IDate";
+import { MONTH_MAPPING, MONTH_YEAR_SEPARATOR } from "../constants/DateConstants";
 
+export const frameMonthString = (currentDate: Date): string => {
+    return MONTH_MAPPING[currentDate.getMonth()] + MONTH_YEAR_SEPARATOR + currentDate.getFullYear();
+}
 export const getNumberOfDaysInMonth = (month: number, year: number): number => {
     const thirtyOneDaysMonths = [1, 3, 5, 7, 8, 10, 12];
     const thirtyDaysMonths = [4, 6, 9, 11];

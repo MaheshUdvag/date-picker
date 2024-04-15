@@ -17,10 +17,16 @@ const MonthYearPicker: React.FC<IMonthYearPicker> = ({ currentDate, setCurrentDa
 
     const ref = useRef<null | HTMLDivElement>(null);
 
+    /**
+     * This method sets the selected month and 
+     * year for the calender.
+     * @param year 
+     * @param month 
+     */
     const setMonthYear = (year: number, month: number) => {
         const date = new Date(year,month,1);
 
-        const isPreviousMonthGreaterOrEqual = prevMonthDate &&
+        const isPreviousMonthGreaterOrEqual = prevMonthDate && 
             prevMonthDate?.getFullYear() >= date.getFullYear() &&
                 prevMonthDate?.getMonth() >= date.getMonth();
         
@@ -28,12 +34,22 @@ const MonthYearPicker: React.FC<IMonthYearPicker> = ({ currentDate, setCurrentDa
             nextMonthDate?.getFullYear() <= date.getFullYear() &&
             nextMonthDate?.getMonth() <= date.getMonth();
 
+        /**
+         * If the previous month calender
+         * is greater than the updated next month
+         * calender then update the previous month calender.
+         */
         if (calenderType === CALENDAR_TYPE.next && isPreviousMonthGreaterOrEqual) {
             const prevMonth = new Date(year, month - 1, 1);
             setPrevMonthDate(prevMonth);
             setNextMonthDate(date);
         }
 
+        /**
+         * If the next month calender
+         * is lesser than the updated previous month
+         * calender then update the next month calender.
+         */
         if (calenderType === CALENDAR_TYPE.prev && isNextMonthLesserOrEqual) {
             const prevMonth = new Date(year, month + 1, 1);
             setPrevMonthDate(date);
@@ -44,6 +60,10 @@ const MonthYearPicker: React.FC<IMonthYearPicker> = ({ currentDate, setCurrentDa
     }
 
     useEffect(() => {
+        /**
+         * Scroll into the current year and month
+         * on load of the component.
+         */
         if(ref) {
             ref.current?.scrollIntoView({behavior: 'auto'});
         }

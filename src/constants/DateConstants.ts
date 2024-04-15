@@ -42,11 +42,12 @@ export enum DATE_RANGE {
     ALL_TIME='All Time'
 }
 
-
 export const MONTH_YEAR_SEPARATOR = ', ';
 
 export const DAYS_OF_WEEK = ['Su','Mo','Tu','We','Th','Fr','Sa'];
 
-export const DATE_PRE_SELECT_RANGES = ['Today','Yesterday','This Week','Last 7 Days','Last 30 Days','This Month','Last Month','This Year','Last Year','All Time'];
-
 export const START_YEAR = 1970;
+
+export const TRAVERSE_PREV_MONTH = '<';
+
+export const TRAVERSE_NEXT_MONTH = '>';

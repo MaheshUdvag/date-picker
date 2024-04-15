@@ -5,7 +5,7 @@ import { IDate } from '../../Interface/IDate';
 import { DatePickerContext } from '../../context/DatePicker.context';
 import { CALENDAR_TYPE } from '../../constants/DateConstants';
 import DateRangeSelector from '../DateRangeSelector/DateRangeSelector';
-import { compareDates, formatIDate, getWeekendsBetweenDates } from '../../utils/date.util';
+import { formatIDate, getWeekendsBetweenDates, sortDates } from '../../utils/date.util';
 
 interface IDatePicker {
   returnSelectedDates: (startEndDates: string[], weekendDates: string[]) => void,
@@ -22,12 +22,12 @@ const DatePicker: React.FC<IDatePicker> = ({ returnSelectedDates, setShowPicker 
   const [prevMonthDate, setPrevMonthDate] = useState<Date>(currentDate);
   const [nextMonthDate, setNextMonthDate] = useState<Date>(nextDate);
   const [returnDateRange, setReturnDateRange] = useState<boolean>(false);
+  const [endRangeDate, setEndRangeDate] = useState<IDate | null>(null);
 
   const returnDates = () => {
     if(date1 && date2) {
-      const isDate1Greater = compareDates(date1,date2);
-      const startDate = isDate1Greater >=0 ? date2 : date1;
-      const endDate = isDate1Greater >=0 ? date1 : date2;
+
+      const [startDate,endDate] = sortDates(date1,date2);
 
       const formattedStartDate = formatIDate(startDate);
       const formattedEndDate = formatIDate(endDate);
@@ -45,7 +45,7 @@ const DatePicker: React.FC<IDatePicker> = ({ returnSelectedDates, setShowPicker 
   }, [date1, date2, returnDateRange]);
 
   return (
-    <DatePickerContext.Provider value={{ date1, setDate1, setDate2, date2, setPrevMonthDate, setNextMonthDate, prevMonthDate, nextMonthDate }}>
+    <DatePickerContext.Provider value={{ date1, setDate1, setDate2, date2, setPrevMonthDate, setNextMonthDate, prevMonthDate, nextMonthDate, endRangeDate, setEndRangeDate }}>
       <div className='date-picker'>
         <div className='date-picker-calender'>
           <DatePickerMonth calenderType={CALENDAR_TYPE.prev} />

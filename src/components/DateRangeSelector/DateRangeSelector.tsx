@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { DATE_PRE_SELECT_RANGES } from '../../constants/DateConstants';
+import { DATE_RANGE } from '../../constants/DateConstants';
 import './date-range-selector.css';
 import { DatePickerContext } from '../../context/DatePicker.context';
 import { returnDateRange } from '../../utils/date.range.util';
@@ -12,6 +12,10 @@ const DateRangeSelector: React.FC<IDateRangeSelector> = ({ returnDates }) => {
 
     const { setDate1, setDate2 } = useContext(DatePickerContext);
 
+    /**
+     * Sets the predefined date range.
+     * @param range 
+     */
     const selectRange = (range: string) => {
         const {startDate, endDate } = returnDateRange(new Date(),range);
         if(startDate && endDate) {
@@ -33,7 +37,7 @@ const DateRangeSelector: React.FC<IDateRangeSelector> = ({ returnDates }) => {
 
     return (
         <div className='range-selector'>
-            {DATE_PRE_SELECT_RANGES.map((range: string) => <div key={range} className='range' onClick={() => selectRange(range)}>{range}</div>)}
+            {Object.values(DATE_RANGE).map((range: string) => <div key={range} className='range' onClick={() => selectRange(range)}>{range}</div>)}
         </div>
     )
 }
